@@ -20,7 +20,7 @@ public class Demo {
 
 output:
 
-```bash
+```java
 import java.util.List;
 import java.util.Map;
 interface IDemo {

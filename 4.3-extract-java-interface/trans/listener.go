@@ -30,6 +30,14 @@ func (l *MyListener) ExitClassDeclaration(ctx *parser.ClassDeclarationContext) {
     fmt.Println( "}" )
 }
 
+/* NOTE: 0 
+    When this programm written,  whitespace and comments are skipped in .g4 file
+    So getText() methods do not contains whitespace and comments.
+    So this is why we use GetTokenStream().GetTokenSource().GetInputStream() to get source file text,
+        anyways it is not necessary and recommended.
+*/
+
+
 func (l *MyListener) EnterMethodDeclaration(ctx *parser.MethodDeclarationContext) {
     // need parser to get tokens, to get source file text
     tokens := ctx.GetParser().GetTokenStream() 
