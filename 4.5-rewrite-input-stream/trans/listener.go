@@ -27,8 +27,6 @@ func (l *MyListener) EnterClassBody(ctx *parser.ClassBodyContext) {
 }   
 
 func (l *MyListener) PrintRewritedSrc() {
-    // tokens := l.Rewriter.GetTokenStream()
-    // is := tokens.GetTokenSource().GetInputStream()
-    fmt.Printf( "%+v \n", l.Rewriter.GetTextDefault()  )
+    fmt.Printf( "%s \n", l.Rewriter.GetTextDefault()  )
 }
 
