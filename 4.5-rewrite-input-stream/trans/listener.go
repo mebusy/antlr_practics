@@ -30,3 +30,12 @@ func (l *MyListener) PrintRewritedSrc() {
     fmt.Printf( "%s \n", l.Rewriter.GetTextDefault()  )
 }
 
+
+func (l *MyListener) EnterClassDeclaration(ctx *parser.ClassDeclarationContext) {
+    // println("enter class")
+    // get parser.NormalClassDeclarationContext
+    nc := ctx.NormalClassDeclaration().(*parser.NormalClassDeclarationContext )
+    id := nc.Identifier()
+    
+    id.GetSymbol().SetText( "changed_id" )  // change class identifier
+}
