@@ -7,7 +7,6 @@ import (
     // "strings"
 )
 
-// your listener, say you want convert C declaration to C#
 type MyListener struct {
 	*parser.BaseJava8ParserListener
 }
