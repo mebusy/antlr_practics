@@ -10,11 +10,11 @@ import (
 // your listener, say you want convert C declaration to C#
 type MyListener struct {
 	*parser.BaseJava8ParserListener
-    p *parser.Java8Parser
 }
 
-func NewListener( p *parser.Java8Parser  ) *MyListener {
-    return &MyListener{ p:p } 
+func NewListener( _ *parser.Java8Parser  ) *MyListener {
+    // parser not used
+    return &MyListener{  } 
 }
 
 func (l *MyListener) EnterClassDeclaration(ctx *parser.ClassDeclarationContext) {
@@ -33,7 +33,7 @@ func (l *MyListener) ExitClassDeclaration(ctx *parser.ClassDeclarationContext) {
 
 func (l *MyListener) EnterMethodDeclaration(ctx *parser.MethodDeclarationContext) {
     // need parser to get tokens, to get source file text
-    tokens := l.p.GetTokenStream() 
+    tokens := ctx.GetParser().GetTokenStream() 
     // NOTE: 1. tokens.GetTokenSource().GetInputStream() 
     //           is CharStream of original source file
 
@@ -57,5 +57,38 @@ func (l *MyListener) EnterMethodDeclaration(ctx *parser.MethodDeclarationContext
 
     fmt.Printf( "\t%s %+v;\n", method_modifiers , method_header )
 }
+
+
+func (l *MyListener) EnterImportDeclaration(ctx *parser.ImportDeclarationContext) {
+    // println("enter import")
+    // get parser.NormalClassDeclarationContext
+    // nc := ctx.NormalClassDeclaration().(*parser.NormalClassDeclarationContext )
+    // id := nc.Identifier()
+
+    // fmt.Println( "interface I"+id.GetText()+" {" )
+    is := ctx.GetParser().GetTokenStream().GetTokenSource().GetInputStream()
+    src_start := ctx.GetStart().GetStart() // index in source file
+    src_stop := ctx.GetStop().GetStop() // index in source file
+
+    fmt.Printf( "%s\n", is.GetText( src_start, src_stop ) )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
