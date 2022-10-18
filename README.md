@@ -108,7 +108,7 @@ $ go mod init cparser
 ```bash
 # default package is `parser`
 $ antlr4 -o parser -Dlanguage=Go C.g4
-qibinyi@Qis-Mac-mini-6 antlr (master) $ ls parser
+$ ls parser
 C.interp		CLexer.interp		c_base_listener.go	c_listener.go
 C.tokens		CLexer.tokens		c_lexer.go		c_parser.go
 
