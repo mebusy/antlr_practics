@@ -34,7 +34,9 @@ func (l *MyListener) ExitClassDeclaration(ctx *parser.ClassDeclarationContext) {
     When this programm written,  whitespace and comments are skipped in .g4 file
     So getText() methods do not contains whitespace and comments.
     So this is why we use GetTokenStream().GetTokenSource().GetInputStream() to get source file text,
-        anyways it is not necessary and recommended.
+    
+    Anyways it is not necessary and recommended. If you redirect the comments and whitespace to hidden channel, 
+    then you can print text with comments and whitespace by using tokens.GetText....() series method.
 */
 
 
